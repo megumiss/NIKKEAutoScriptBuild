@@ -1,0 +1,1 @@
+NIKKEAutoScript build base resource
