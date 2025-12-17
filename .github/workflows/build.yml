@@ -119,6 +119,9 @@ jobs:
     # 6.1 执行 Python 脚本 (替代 updater.bat)
     - name: Run Installer Script
       working-directory: NIKKEAutoScript
+      env: 
+        PYTHONUTF8: 1
+        PYTHONIOENCODING: utf-8
       run: |
         Write-Host "Running deploy/installer.py directly to mimic updater.bat..."
         # ⚠️ 直接调用 Python 等待执行结束，而不是用 start 异步启动
