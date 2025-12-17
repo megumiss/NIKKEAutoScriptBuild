@@ -100,11 +100,11 @@ jobs:
     # 5. 打包阶段 1: Standard
     # ==========================
 
-    # 5.1 删除 .git (根据你的要求 1)
+    # 5.1 删除 .git
     - name: Remove .git (Pre-Standard)
       run: Remove-Item "NIKKEAutoScript\.git" -Recurse -Force -ErrorAction SilentlyContinue
 
-    # 5.2 打包 Standard (使用 mx=5 解决报错)
+    # 5.2 打包 Standard
     - name: Pack Standard Version (7z)
       run: |
         $fileName = "NKAS_${{ env.TAG_NAME }}.7z"
@@ -116,7 +116,7 @@ jobs:
     # 6. 执行 Updater 逻辑
     # ==========================
     
-    # 6.1 执行 Python 脚本 (替代 updater.bat)
+    # 6.1 执行 Python 脚本
     - name: Run Installer Script
       working-directory: NIKKEAutoScript
       env: 
@@ -142,7 +142,7 @@ jobs:
     # 7. 打包阶段 2: Full CN
     # ==========================
 
-    # 7.1 再次删除 .git (防止 installer.py 运行时重新生成了它)
+    # 7.1 再次删除 .git
     - name: Remove .git (Pre-CN)
       run: Remove-Item "NIKKEAutoScript\.git" -Recurse -Force -ErrorAction SilentlyContinue
 
@@ -160,6 +160,7 @@ jobs:
         tag_name: ${{ env.TAG_NAME }}
         name: NKAS ${{ env.TAG_NAME }}
         draft: true
+        generate_release_notes: true
         files: |
           ${{ env.ASSET_STD }}
           ${{ env.ASSET_CN }}
